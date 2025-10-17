@@ -24,25 +24,28 @@
 // Input: nums = [4,5,6,7]
 
 // Output: 4
-/**
- * @param {number[]} nums
- * @return {number}
- */
-var findMin = function(nums) {
-  let left = 0;
-  let right = nums.length - 1;
 
-  while (left < right) {
-    const mid = Math.floor((left + right) / 2);
+class Solution {
+  /**
+   * @param {number[]} nums
+   * @return {number}
+   */
+  findMin(nums) {
+    let left = 0;
+    let right = nums.length - 1;
 
-    // If mid element > rightmost element, smallest is to the right
-    if (nums[mid] > nums[right]) {
-      left = mid + 1;
-    } else {
-      // Smallest is in left half (including mid)
-      right = mid;
+    while (left < right) {
+      const mid = Math.floor((left + right) / 2);
+
+      // If mid element > rightmost element, minimum is in right half
+      if (nums[mid] > nums[right]) {
+        left = mid + 1;
+      } else {
+        // Otherwise, it's in the left half (including mid)
+        right = mid;
+      }
     }
-  }
 
-  return nums[left];
-};
+    return nums[left];
+  }
+}
